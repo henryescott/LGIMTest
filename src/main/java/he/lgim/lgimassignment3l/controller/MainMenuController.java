@@ -17,7 +17,7 @@ public class MainMenuController {
 	public MainMenuController() {
 		setInputValid(true);
 	}
-	
+
 	/* ---------------- Methods ---------------- */
 	private void setInputValid(Boolean inputValid) {
 		this.inputValid = inputValid;
@@ -34,39 +34,40 @@ public class MainMenuController {
 		case "2":
 			System.exit(0);
 			break;
-		// Handle invalid input	
+		// Handle invalid input
 		default:
 			setInputValid(false);
-			break; 
+			break;
 		}
 	}
 
 	private void loadFile(String filepath, String filename) {
 		try {
 			textFile = new TextFileAnalyser(filepath, filename);
-			// For the moment we can just hard code the delimiter, but as an extension we may want to ask the user
+			// For the moment we can just hard code the delimiter, but as an extension we
+			// may want to ask the user
 			textFile.readFile("\\s+");
 			System.out.println("\nFile loaded successfully: " + filename);
 			textFile.calculateStatistics();
 			printStats(textFile);
 		}
 		// The file isn't .txt format (thrown by the TextFile constructor)
-		catch(IllegalArgumentException e) {
+		catch (IllegalArgumentException e) {
 			System.out.println("\nThe file must be .txt format.\n");
 		}
 		// The file is unable to be found
-		catch (FileNotFoundException e){
+		catch (FileNotFoundException e) {
 			System.out.println("\nUnable to locate file: " + filename + "\n");
 		}
 		// Any other issues that may occur
-		catch(Exception e) {
+		catch (Exception e) {
 			System.out.println("\nProblem reading file: " + filename + "\n");
-		}
+		} 
 		finally {
 			setInputValid(true);
 		}
 	}
-	
+
 	private void printStats(TextFileAnalyser textFile) {
 		System.out.println("\nStatistics");
 		System.out.println("------------------------------------");
@@ -77,13 +78,8 @@ public class MainMenuController {
 		// Avg letters
 		System.out.println("Average letters per word: " + textFile.getAvgLetters());
 		// Most common char
-		List<Character> mostCommonLetters = textFile.getMostCommonLetter(); 
-		System.out.print(
-				"Most common letter(s): " + 
-				mostCommonLetters
-				.stream()
-				.map(String::valueOf)
-				.collect(Collectors.joining(", ")) + "\n\n"
-		);
+		List<Character> mostCommonLetters = textFile.getMostCommonLetter();
+		System.out.print("Most common letter(s): "
+				+ mostCommonLetters.stream().map(String::valueOf).collect(Collectors.joining(", ")) + "\n\n");
 	}
 }

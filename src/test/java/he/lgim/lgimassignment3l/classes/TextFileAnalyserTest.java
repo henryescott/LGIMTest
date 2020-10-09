@@ -13,15 +13,15 @@ import org.junit.jupiter.api.Test;
 
 public class TextFileAnalyserTest {
 	TextFileAnalyser tfa;
-	
+
 	// Constructor Tests
 	@Test
 	public void testTextFileAnalyserFailure() {
 		try {
 			tfa = new TextFileAnalyser("\\src\\test\\resources\\", "image.png");
 			fail("Didn't throw exception.");
-		}
-		catch (IllegalArgumentException e) {          
+		} 
+		catch (IllegalArgumentException e) {
 			// Test passed
 		}
 	}
@@ -30,8 +30,8 @@ public class TextFileAnalyserTest {
 	public void testTextFileAnalyserSuccess() {
 		try {
 			tfa = new TextFileAnalyser("src\\test\\resources\\", "test.txt");
-		}
-		catch (IllegalArgumentException e) {          
+		} 
+		catch (IllegalArgumentException e) {
 			fail("Shouldn't have thrown exception: " + e);
 		}
 	}
@@ -43,7 +43,8 @@ public class TextFileAnalyserTest {
 			tfa = new TextFileAnalyser("\\src\\test\\resources\\", "somefilethatdoesntexist.txt");
 			tfa.readFile("\\s+");
 			fail("Didn't throw exception.");
-		} catch (FileNotFoundException e) {
+		} 
+		catch (FileNotFoundException e) {
 			// Test passed
 		}
 	}
@@ -51,7 +52,7 @@ public class TextFileAnalyserTest {
 	@Nested
 	class StatsicticsTests {
 		TextFileAnalyser tfa;
-		
+
 		@BeforeEach
 		@Test
 		public void testReadFileSuccess() {
@@ -59,7 +60,8 @@ public class TextFileAnalyserTest {
 			try {
 				tfa.readFile("\\s+");
 				tfa.calculateStatistics();
-			} catch (FileNotFoundException e) {
+			} 
+			catch (FileNotFoundException e) {
 				fail("Shouldn't have thrown exception: " + e);
 			}
 		}
@@ -88,7 +90,7 @@ public class TextFileAnalyserTest {
 		public void testGetMostCommonLetter() {
 			List<Character> correctList = new ArrayList<Character>();
 			correctList.add("e".charAt(0));
-			assertEquals(tfa.getMostCommonLetter(),correctList);
+			assertEquals(tfa.getMostCommonLetter(), correctList);
 		}
 	}
 }

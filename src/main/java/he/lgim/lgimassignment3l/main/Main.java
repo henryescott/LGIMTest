@@ -4,10 +4,10 @@ import he.lgim.lgimassignment3l.controller.MainMenuController;
 
 public class Main {
 	public static void main(String[] args) {
-    	MainMenuController menuController = new MainMenuController();
-    	// Main program loop
-    	while(true) {
-    		menuController.mainMenu();
-    	}
+		MainMenuController menuController = new MainMenuController();
+		// Main program loop
+		while (true) {
+			menuController.mainMenu();
+		}
 	}
 }
